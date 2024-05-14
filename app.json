@@ -12,7 +12,7 @@
     "env": {
         "AS_COPY": {
             "description": "set this to true to forward message as copy",
-            "value": "False" 
+            "value": "False"
         },
         "API_HASH": {
             "description": "Get this value from https://my.telegram.org",
@@ -26,10 +26,18 @@
             "description": "Your bot token, as a string. Get this from @BotFather",
             "value": ""
         },
-        "CHANNEL_ID": {
-            "description": "your channel id in format -10023352648:-100655379 (from channel id:to channel id) if you want to give more channels seperate them with white space",
+        "FROM_CHANNEL": {
+            "description": "your channel id in format -10023352648 (from channel id) if you want to give more channels seperate them with white space",
+            "value": ""
+        },
+        "TO_CHANNEL": {
+            "description": "your channel id in format -10023352648 (to channel id) if you want to give more channels seperate them with white space",
             "value": ""
         }
     },
-    "buildpacks": [{"url": "heroku/python"}]
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ]
 }
