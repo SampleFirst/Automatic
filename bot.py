@@ -3,7 +3,7 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(lineno)d - %(mo
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from info import API_ID, API_HASH, BOT_TOKEN
+from info import API_ID, API_HASH, BOT_TOKEN, PORT
 from pyrogram import Client 
 from aiohttp import web
 from Plugins import web_server
