@@ -3,7 +3,7 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(lineno)d - %(mo
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from info import API_ID, API_HASH, BOT_TOKEN, PORT
+from info import SESSION, API_ID, API_HASH, BOT_TOKEN, PORT
 from pyrogram import Client 
 from aiohttp import web
 from Plugins import web_server
@@ -11,10 +11,10 @@ from Plugins import web_server
 class Bot(Client):
     def __init__(self):
         super().__init__(
-            name="CHANNELFORWARD",
-            bot_token=BOT_TOKEN,
+            name=SESSION,
             api_id=API_ID,
             api_hash=API_HASH,
+            bot_token=BOT_TOKEN,
             workers=20,
             plugins={'root': 'Plugins'}
         )
