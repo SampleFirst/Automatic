@@ -5,17 +5,14 @@ from info import FROM_CHANNEL, TO_CHANNEL, AS_COPY
 
 logger = logging.getLogger(__name__)
 
-@Client.on_message(filters.group)
+@Client.on_message(filters.channel)
 async def forward(client, message):
     try:
         from_channel = FROM_CHANNEL
         to_channel = TO_CHANNEL
         if message.chat.id == int(from_channel):
-            if message.from_user.is_bot:
-                func = message.copy if AS_COPY else message.forward
-                await func(int(to_channel))
-                await asyncio.sleep(1)
-            else:
-                return 
+            func = message.copy if AS_COPY else message.forward
+            await func(int(to_channel))
+            await asyncio.sleep(1)
     except Exception as e:
         logger.exception(e)
