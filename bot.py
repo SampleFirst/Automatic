@@ -6,7 +6,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from info import API_ID, API_HASH, BOT_TOKEN
 from pyrogram import Client 
 from aiohttp import web
-from plugins import web_server
+from Plugins import web_server
 
 class Bot(Client):
     def __init__(self):
