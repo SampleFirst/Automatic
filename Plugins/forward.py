@@ -5,7 +5,7 @@ from info import FROM_CHANNEL, TO_CHANNEL, AS_COPY
 
 logger = logging.getLogger(__name__)
 
-@Client.on_message(filters.channel)
+@Client.on_message(filters.chat)
 async def forward(client, message):
     try:
         from_channel = FROM_CHANNEL
