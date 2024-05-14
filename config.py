@@ -7,3 +7,4 @@ class Config(object):
       BOT_TOKEN = getenv("BOT_TOKEN", "")
       FROM_CHANNEL = getenv("FROM_CHANNEL", "")
       TO_CHANNEL = getenv("TO_CHANNEL", "")
+      PORT = getenv("PORT", "8080")
