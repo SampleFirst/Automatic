@@ -1,24 +1,20 @@
 import logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(lineno)d - %(module)s - %(levelname)s - %(message)s'
-)
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(lineno)d - %(module)s - %(levelname)s - %(message)s')
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-import uvloop
-uvloop.install()
-from config import Config
+from info import API_ID, API_HASH, BOT_TOKEN
 from pyrogram import Client 
+from aiohttp import web
+from plugins import web_server
 
-
-class channelforward(Client, Config):
+class Bot(Client):
     def __init__(self):
         super().__init__(
             name="CHANNELFORWARD",
-            bot_token=self.BOT_TOKEN,
-            api_id=self.API_ID,
-            api_hash=self.API_HASH,
+            bot_token=BOT_TOKEN,
+            api_id=API_ID,
+            api_hash=API_HASH,
             workers=20,
             plugins={'root': 'Plugins'}
         )
@@ -27,11 +23,15 @@ class channelforward(Client, Config):
         await super().start()
         me = await self.get_me()
         print(f"New session started for {me.first_name}({me.username})")
-
+        app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, PORT).start()
+        
     async def stop(self):
         await super().stop()
         print("Session stopped. Bye!!")
 
 
-if __name__ == "__main__" :
-    channelforward().run()
+app = Bot()
+app.run()
