@@ -1,7 +1,7 @@
 import logging
 import asyncio
 from pyrogram import Client, filters
-from info import FROM_CHANNEL, TO_CHANNEL
+from info import FROM_CHANNEL, TO_CHANNEL, AS_COPY
 
 logger = logging.getLogger(__name__)
 
